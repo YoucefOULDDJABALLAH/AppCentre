@@ -17,8 +17,6 @@ namespace AppCentre.API.Models
         public string Nom { get; set; }
         [Required, MaxLength(50)]
         public string Prenom { get; set; }
-        [Required, MaxLength(50)]
-        public string ApplicationName { get; set; }
 
     }
 }
