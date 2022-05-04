@@ -31,7 +31,7 @@ namespace AppCentre.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<JWT>(Configuration.GetSection("JWT"));
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer( Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
