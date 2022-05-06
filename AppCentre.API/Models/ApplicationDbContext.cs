@@ -7,7 +7,7 @@ namespace AppCentre.API.Models
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
-
+            
         }
     }
 }
