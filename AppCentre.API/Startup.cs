@@ -1,5 +1,6 @@
 using AppCentre.API.Helpers;
 using AppCentre.API.Models;
+using AppCentre.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,7 @@ namespace AppCentre.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<JWT>(Configuration.GetSection("JWT"));
+            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer( Configuration.GetConnectionString("DefaultConnection")));
             services.AddAuthentication(options =>
