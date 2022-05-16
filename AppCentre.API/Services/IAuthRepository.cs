@@ -1,6 +1,11 @@
-﻿namespace AppCentre.API.Services
+﻿using AppCentre.API.DTOs.InComing;
+using AppCentre.API.DTOs.OutGoing;
+using System.Threading.Tasks;
+
+namespace AppCentre.API.Services
 {
     public interface IAuthRepository
     {
+        Task<AuthenticatedModelDTO> RegisterUser(RegisterationModelDTO model);
     }
 }

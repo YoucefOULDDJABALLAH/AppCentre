@@ -35,8 +35,8 @@ namespace AppCentre.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<JWT>(Configuration.GetSection("JWT"));
-            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer( Configuration.GetConnectionString("DefaultConnection")));
             services.AddAuthentication(options =>
             {
@@ -57,6 +57,7 @@ namespace AppCentre.API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Key"]))
                 };
             });
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
