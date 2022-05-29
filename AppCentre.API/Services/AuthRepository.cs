@@ -39,19 +39,20 @@ namespace AppCentre.API.Services
                 var errors = string.Empty;
                 foreach (var err in result.Errors)
                 {
-                    errors += $"{ err}, ";
+                    errors += $"{ err.Description}, ";
                 }
                 return new AuthenticatedModelDTO { Errors = errors, Message = "Registration failed !", IsSuccess = false };
             }
-            /*var jwtSecurityToken = await CreateJwtToken(user);*/
+
+            var jwtSecurityToken = await CreateJwtToken(user);
 
             return new AuthenticatedModelDTO
             {
                 Message = "User created successfuly !",
                 IsSuccess = true,
                 UserName = user.UserName,
-                Matricule = user.Matricule/*,
-                Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken)*/
+                Matricule = user.Matricule,
+                Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken)
             };
 
         }
