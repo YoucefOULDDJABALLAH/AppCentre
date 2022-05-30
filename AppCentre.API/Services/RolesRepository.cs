@@ -54,13 +54,13 @@ namespace AppCentre.API.Services
         public async Task<CreatedRoleModelDTO> CreateNewRole(CreateNewRoleModelDTO model)
         {
             var role = await _roleManager.FindByNameAsync(model.RoleName);
-            if (role is not null && role.ApplicationName == model.ApplicationName)
+            if (role is not null && role.ApplicationsID == model.ApplicationID)
             {
-                return new CreatedRoleModelDTO { Message=$"{model.RoleName} already exists in {model.ApplicationName}"};
+                return new CreatedRoleModelDTO { Message=$"{model.RoleName} already exists in {model.ApplicationID}"};
             }
             var newRole = new ApplicationRole
             {
-                ApplicationName = model.ApplicationName,
+                ApplicationsID = model.ApplicationID,
                 Name = model.RoleName,
                 NormalizedName = model.RoleName,
                 Id = Guid.NewGuid().ToString(),
@@ -79,7 +79,7 @@ namespace AppCentre.API.Services
                     Message = "Errors Occured !",
                     Errors = error,
                     IsSuccess = false,
-                    ApplicationName = model.ApplicationName,
+                    ApplicationID = model.ApplicationID,
                     RoleName = model.RoleName
                 };
             }

@@ -3,7 +3,7 @@
     public class CreateNewRoleModelDTO
     {
         public string RoleName { get; set; }
-        public string ApplicationName { get; set; }
+        public string ApplicationID { get; set; }
 
     }
 }

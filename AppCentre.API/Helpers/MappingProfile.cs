@@ -15,8 +15,9 @@ namespace AppCentre.API.Helpers
 
             CreateMap<ApplicationRole, CreatedRoleModelDTO>()
                 .ForMember(dest => dest.RoleName, src => src.MapFrom(src => src.Name))
-                .ForMember(dest => dest.ApplicationName, src => src.MapFrom(src => src.ApplicationName))
-                .ForMember(dest => dest.RoleId, src => src.MapFrom(src => src.Id));
+                .ForMember(dest => dest.ApplicationID, src => src.MapFrom(src => src.ApplicationsID))
+                .ForMember(dest => dest.RoleId, src => src.MapFrom(src => src.Id))
+                .ForMember(dest => dest.ApplicationName, src => src.MapFrom(src => src.App.ApplicationsName));
         }
     }
 }

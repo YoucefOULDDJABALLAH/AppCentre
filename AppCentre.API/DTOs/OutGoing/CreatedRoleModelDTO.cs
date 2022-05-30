@@ -4,6 +4,7 @@
     {
         public string RoleId { get; set; }
         public string RoleName { get; set; }
+        public string ApplicationID { get; set; }
         public string ApplicationName { get; set; }
     }
 }

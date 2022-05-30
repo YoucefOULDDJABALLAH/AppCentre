@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCentre.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220504215854_UpdateRole")]
-    partial class UpdateRole
+    [Migration("20220530215927_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,10 +26,8 @@ namespace AppCentre.API.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<string>("ApplicationsID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -44,6 +42,8 @@ namespace AppCentre.API.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationsID");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
@@ -142,6 +142,22 @@ namespace AppCentre.API.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("AppCentre.API.Models.Applications", b =>
+                {
+                    b.Property<string>("ApplicationsID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplicationsName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShortName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ApplicationsID");
+
+                    b.ToTable("AspNetApplications");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -246,6 +262,15 @@ namespace AppCentre.API.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("AppCentre.API.Models.ApplicationRole", b =>
+                {
+                    b.HasOne("AppCentre.API.Models.Applications", "App")
+                        .WithMany()
+                        .HasForeignKey("ApplicationsID");
+
+                    b.Navigation("App");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
