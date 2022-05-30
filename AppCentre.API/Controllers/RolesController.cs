@@ -30,5 +30,21 @@ namespace AppCentre.API.Controllers
             }
             return Ok(result);
         }
+
+        [HttpPost]
+        [Route("CreateNewRole")]
+        public async Task<IActionResult> CreateNewRole(CreateNewRoleModelDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _rolesRepository.CreateNewRole(model);
+            if (!result.IsSuccess)
+            {
+                BadRequest(result.Errors);
+            }
+            return Ok(result);
+        }
     }
 }

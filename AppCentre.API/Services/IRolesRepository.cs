@@ -7,5 +7,6 @@ namespace AppCentre.API.Services
     public interface IRolesRepository
     {
         Task<AuthenticatedModelDTO> AddUserToRole(AddUserToRoleModelDTO model);
+        Task<CreatedRoleModelDTO> CreateNewRole(CreateNewRoleModelDTO model);
     }
 }
