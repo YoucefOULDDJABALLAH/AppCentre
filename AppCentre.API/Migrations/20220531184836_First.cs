@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppCentre.API.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class First : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -177,6 +177,26 @@ namespace AppCentre.API.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetApplications",
+                columns: new[] { "ApplicationsID", "ApplicationsName", "ShortName" },
+                values: new object[] { "34863c7c-578a-43b4-a54d-8ab1b8c52e33", "Applications Centre", "AppCentre" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Grade", "LockoutEnabled", "LockoutEnd", "Matricule", "NN", "Nom", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Prenom", "SecurityStamp", "Service", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "cd9ec744-4db0-4df7-afe5-ba0c5861cd51", 0, "f898f542-5cc3-4a7e-b3d4-b5aad55c66a0", "Youcef_OULD_DJABALLAH@AppCentre.DRH", true, 15, false, null, "3K174", 400123, "Youcef", "Youcef_OULD_DJABALLAH@AppCentre.DRH", null, "R9CwnWEjrWLxEXfeJOEe2srXIOZj5vqTXK1gUEL++oI=", null, false, "OULD DJABALLAH", "14d6e672-8bda-4524-b83f-dccb7028cec5", "16H\\", false, "Youcef_OULD_DJABALLAH" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ApplicationsID", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "7504e4b1-0545-47e6-a43f-9a9415120630", "34863c7c-578a-43b4-a54d-8ab1b8c52e33", "0b56c731-6fd5-48b9-9e21-ef716ed1786a", "Developer", "Developer" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "7504e4b1-0545-47e6-a43f-9a9415120630", "cd9ec744-4db0-4df7-afe5-ba0c5861cd51" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

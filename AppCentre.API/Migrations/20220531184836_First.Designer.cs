@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCentre.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220530225102_second")]
-    partial class second
+    [Migration("20220531184836_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,9 +55,9 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "70f82a9c-ded4-4056-849d-29c0349bde2d",
-                            ApplicationsID = "59133643-5673-43cf-a497-183c7a5038a5",
-                            ConcurrencyStamp = "af4fdbec-47ed-470e-99e4-a27a7d3bae5b",
+                            Id = "7504e4b1-0545-47e6-a43f-9a9415120630",
+                            ApplicationsID = "34863c7c-578a-43b4-a54d-8ab1b8c52e33",
+                            ConcurrencyStamp = "0b56c731-6fd5-48b9-9e21-ef716ed1786a",
                             Name = "Developer",
                             NormalizedName = "Developer"
                         });
@@ -156,9 +156,9 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f9a351e2-bd5a-491d-9b24-b3c048df3935",
+                            Id = "cd9ec744-4db0-4df7-afe5-ba0c5861cd51",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9fb15b3e-26d8-43ac-9b8d-81770cb3682d",
+                            ConcurrencyStamp = "f898f542-5cc3-4a7e-b3d4-b5aad55c66a0",
                             Email = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
                             EmailConfirmed = true,
                             Grade = 15,
@@ -167,10 +167,10 @@ namespace AppCentre.API.Migrations
                             NN = 400123,
                             Nom = "Youcef",
                             NormalizedEmail = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
-                            PasswordHash = "Nzl2BjEDeWPAnh3TwojJ7kvDzoCX0aKQ7rC/vOjdG7s=",
+                            PasswordHash = "R9CwnWEjrWLxEXfeJOEe2srXIOZj5vqTXK1gUEL++oI=",
                             PhoneNumberConfirmed = false,
                             Prenom = "OULD DJABALLAH",
-                            SecurityStamp = "2d6d0d14-1407-4b52-a201-cf3634ca4528",
+                            SecurityStamp = "14d6e672-8bda-4524-b83f-dccb7028cec5",
                             Service = "16H\\",
                             TwoFactorEnabled = false,
                             UserName = "Youcef_OULD_DJABALLAH"
@@ -195,7 +195,7 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            ApplicationsID = "59133643-5673-43cf-a497-183c7a5038a5",
+                            ApplicationsID = "34863c7c-578a-43b4-a54d-8ab1b8c52e33",
                             ApplicationsName = "Applications Centre",
                             ShortName = "AppCentre"
                         });
@@ -284,6 +284,13 @@ namespace AppCentre.API.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "cd9ec744-4db0-4df7-afe5-ba0c5861cd51",
+                            RoleId = "7504e4b1-0545-47e6-a43f-9a9415120630"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

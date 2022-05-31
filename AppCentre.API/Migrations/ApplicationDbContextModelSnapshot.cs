@@ -53,9 +53,9 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "70f82a9c-ded4-4056-849d-29c0349bde2d",
-                            ApplicationsID = "59133643-5673-43cf-a497-183c7a5038a5",
-                            ConcurrencyStamp = "af4fdbec-47ed-470e-99e4-a27a7d3bae5b",
+                            Id = "7f37565c-b4c9-4aea-9b12-18b751865874",
+                            ApplicationsID = "1624ce4f-be04-4b12-8639-cb211b36f282",
+                            ConcurrencyStamp = "85bd5a54-e826-44b2-abbb-174fc4eb2f9b",
                             Name = "Developer",
                             NormalizedName = "Developer"
                         });
@@ -154,9 +154,9 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f9a351e2-bd5a-491d-9b24-b3c048df3935",
+                            Id = "1d78d3cc-9171-4513-b639-f3ea026988f9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9fb15b3e-26d8-43ac-9b8d-81770cb3682d",
+                            ConcurrencyStamp = "2d4e7384-8f78-41c6-b183-4be827408369",
                             Email = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
                             EmailConfirmed = true,
                             Grade = 15,
@@ -165,10 +165,10 @@ namespace AppCentre.API.Migrations
                             NN = 400123,
                             Nom = "Youcef",
                             NormalizedEmail = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
-                            PasswordHash = "Nzl2BjEDeWPAnh3TwojJ7kvDzoCX0aKQ7rC/vOjdG7s=",
+                            PasswordHash = "31uVufYPiSu4aohjRaUSzI7WeY3PSwkPX3pzGg9Grrg=",
                             PhoneNumberConfirmed = false,
                             Prenom = "OULD DJABALLAH",
-                            SecurityStamp = "2d6d0d14-1407-4b52-a201-cf3634ca4528",
+                            SecurityStamp = "abbbfb76-7edd-4e25-bc47-d2d4c868b869",
                             Service = "16H\\",
                             TwoFactorEnabled = false,
                             UserName = "Youcef_OULD_DJABALLAH"
@@ -181,19 +181,27 @@ namespace AppCentre.API.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ApplicationsName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ShortName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ApplicationsID");
+
+                    b.HasIndex("ApplicationsName")
+                        .IsUnique()
+                        .HasFilter("[ApplicationsName] IS NOT NULL");
+
+                    b.HasIndex("ShortName")
+                        .IsUnique()
+                        .HasFilter("[ShortName] IS NOT NULL");
 
                     b.ToTable("AspNetApplications");
 
                     b.HasData(
                         new
                         {
-                            ApplicationsID = "59133643-5673-43cf-a497-183c7a5038a5",
+                            ApplicationsID = "1624ce4f-be04-4b12-8639-cb211b36f282",
                             ApplicationsName = "Applications Centre",
                             ShortName = "AppCentre"
                         });
@@ -282,6 +290,13 @@ namespace AppCentre.API.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1d78d3cc-9171-4513-b639-f3ea026988f9",
+                            RoleId = "7f37565c-b4c9-4aea-9b12-18b751865874"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

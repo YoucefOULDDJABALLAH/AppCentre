@@ -8,14 +8,15 @@ namespace AppCentre.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserRegistrationController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private readonly IAuthRepository _authRepository;
+        private readonly IUserRepository _authRepository;
 
-        public UserRegistrationController(IAuthRepository authRepository)
+        public UsersController(IUserRepository authRepository)
         {
             _authRepository = authRepository;
         }
+
         [HttpPost]
         [Route("CreateUser")]
         public async Task<IActionResult> CreateUser(RegisterationModelDTO model)

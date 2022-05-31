@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCentre.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220530215927_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20220531203339_second")]
+    partial class second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,16 @@ namespace AppCentre.API.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "7f37565c-b4c9-4aea-9b12-18b751865874",
+                            ApplicationsID = "1624ce4f-be04-4b12-8639-cb211b36f282",
+                            ConcurrencyStamp = "85bd5a54-e826-44b2-abbb-174fc4eb2f9b",
+                            Name = "Developer",
+                            NormalizedName = "Developer"
+                        });
                 });
 
             modelBuilder.Entity("AppCentre.API.Models.ApplicationUser", b =>
@@ -142,6 +152,29 @@ namespace AppCentre.API.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1d78d3cc-9171-4513-b639-f3ea026988f9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2d4e7384-8f78-41c6-b183-4be827408369",
+                            Email = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
+                            EmailConfirmed = true,
+                            Grade = 15,
+                            LockoutEnabled = false,
+                            Matricule = "3K174",
+                            NN = 400123,
+                            Nom = "Youcef",
+                            NormalizedEmail = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
+                            PasswordHash = "31uVufYPiSu4aohjRaUSzI7WeY3PSwkPX3pzGg9Grrg=",
+                            PhoneNumberConfirmed = false,
+                            Prenom = "OULD DJABALLAH",
+                            SecurityStamp = "abbbfb76-7edd-4e25-bc47-d2d4c868b869",
+                            Service = "16H\\",
+                            TwoFactorEnabled = false,
+                            UserName = "Youcef_OULD_DJABALLAH"
+                        });
                 });
 
             modelBuilder.Entity("AppCentre.API.Models.Applications", b =>
@@ -150,14 +183,30 @@ namespace AppCentre.API.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ApplicationsName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ShortName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ApplicationsID");
 
+                    b.HasIndex("ApplicationsName")
+                        .IsUnique()
+                        .HasFilter("[ApplicationsName] IS NOT NULL");
+
+                    b.HasIndex("ShortName")
+                        .IsUnique()
+                        .HasFilter("[ShortName] IS NOT NULL");
+
                     b.ToTable("AspNetApplications");
+
+                    b.HasData(
+                        new
+                        {
+                            ApplicationsID = "1624ce4f-be04-4b12-8639-cb211b36f282",
+                            ApplicationsName = "Applications Centre",
+                            ShortName = "AppCentre"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -243,6 +292,13 @@ namespace AppCentre.API.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1d78d3cc-9171-4513-b639-f3ea026988f9",
+                            RoleId = "7f37565c-b4c9-4aea-9b12-18b751865874"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

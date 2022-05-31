@@ -36,7 +36,7 @@ namespace AppCentre.API
         {
             services.Configure<JWT>(Configuration.GetSection("JWT"));
             services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRolesRepository, RolesRepository>();
             services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer( Configuration.GetConnectionString("DefaultConnection")));
             services.AddAuthentication(options =>

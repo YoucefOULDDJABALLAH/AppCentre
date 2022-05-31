@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+﻿using AppCentre.API.Models;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -11,14 +12,15 @@ namespace AppCentre.API.Models
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
             var AppId = Guid.NewGuid().ToString();
-            var RoleId = Guid.NewGuid().ToString();
-            var UserID = Guid.NewGuid().ToString();
+            var roleId = Guid.NewGuid().ToString();
+            var userID = Guid.NewGuid().ToString();
 
             builder.Entity<Applications>()
                 .HasData(new Applications
@@ -33,10 +35,11 @@ namespace AppCentre.API.Models
                 {
                     Name = "Developer",
                     ApplicationsID = AppId,
-                    Id = RoleId,
+                    Id = roleId,
                     NormalizedName = "Developer",
                     ConcurrencyStamp= Guid.NewGuid().ToString()
                 });
+
             builder.Entity<ApplicationUser>()
                 .HasData(new ApplicationUser
                 {
@@ -50,11 +53,11 @@ namespace AppCentre.API.Models
                     Email = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
                     EmailConfirmed=true,
                     NormalizedEmail= "Youcef_OULD_DJABALLAH@AppCentre.DRH",
-                    Id= UserID,
+                    Id= userID,
                     PasswordHash= getHashedPassword("Dgsn_2020")
-
-
                 });
+
+            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> {RoleId=roleId,UserId=userID}); 
         }
         private string getHashedPassword(string password) 
         {

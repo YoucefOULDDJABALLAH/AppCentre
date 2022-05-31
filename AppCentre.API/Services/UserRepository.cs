@@ -15,12 +15,12 @@ using System.Threading.Tasks;
 
 namespace AppCentre.API.Services
 {
-    public class AuthRepository : IAuthRepository
+    public class UserRepository : IUserRepository
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
         private readonly JWT _jwt;
-        public AuthRepository(UserManager<ApplicationUser> userManager, IMapper mapper)
+        public UserRepository(UserManager<ApplicationUser> userManager, IMapper mapper)
         {
             _userManager = userManager;
             _mapper = mapper;
