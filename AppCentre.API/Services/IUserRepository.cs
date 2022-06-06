@@ -6,7 +6,7 @@ namespace AppCentre.API.Services
 {
     public interface IUserRepository
     {
-        Task<AuthenticatedModelDTO> AddUserToRole(AddUserToRoleModelDTO model);
+        Task<AuthenticatedModelDTO> LoginUser(LoginUserModelDTO model);
         Task<AuthenticatedModelDTO> RegisterUser(RegisterationModelDTO model);
     }
 }

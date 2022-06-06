@@ -32,5 +32,21 @@ namespace AppCentre.API.Controllers
             }
             return Ok(result);
         }
+
+        [HttpPost]
+        [Route("LoginUser")]
+        public async Task<IActionResult> LoginUser(LoginUserModelDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _authRepository.LoginUser(model);
+            if (!result.IsSuccess)
+            {
+                BadRequest(result.Errors);
+            }
+            return Ok(result);
+        }
     }
 }

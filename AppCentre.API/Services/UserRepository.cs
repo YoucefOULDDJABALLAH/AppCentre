@@ -4,6 +4,7 @@ using AppCentre.API.Helpers;
 using AppCentre.API.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,11 @@ namespace AppCentre.API.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
         private readonly JWT _jwt;
-        public UserRepository(UserManager<ApplicationUser> userManager, IMapper mapper)
+        public UserRepository(UserManager<ApplicationUser> userManager, IMapper mapper, IOptions<JWT> jwt)
         {
             _userManager = userManager;
             _mapper = mapper;
+            _jwt = jwt.Value;
         }
         public async Task<AuthenticatedModelDTO> RegisterUser(RegisterationModelDTO model)
         {
@@ -57,37 +59,33 @@ namespace AppCentre.API.Services
 
         }
 
-        public async Task<AuthenticatedModelDTO> AddUserToRole(AddUserToRoleModelDTO model)
+
+        public async Task<AuthenticatedModelDTO> LoginUser(LoginUserModelDTO model)
         {
-            var user = await _userManager.FindByNameAsync(model.UserName);
-            var result = await _userManager.AddToRoleAsync(user, model.RoleName);
-            if (!result.Succeeded)
+            model.UserName += "@AppCentre.DRH";
+            var user = await _userManager.FindByEmailAsync(model.UserName);
+            if (user is null || !await _userManager.CheckPasswordAsync(user,model.Password))
             {
-                var errors = string.Empty;
-                foreach (var err in result.Errors)
-                {
-                    errors += $"{err}, ";
-                }
                 return new AuthenticatedModelDTO
                 {
-                    Errors = errors,
-                    Message = $"Adding {model.UserName} to {model.RoleName}"
+                    IsSuccess = false,
+                    Message = "UserName or Password is incorrect !"
                 };
             }
+            var jwtSecurityToken = await CreateJwtToken(user);
             var roles = await _userManager.GetRolesAsync(user);
-            var claims = (await _userManager.GetClaimsAsync(user)).Select(e => e.Value).ToList();
-
-
             return new AuthenticatedModelDTO
             {
-                UserName = model.UserName,
-                Roles = roles.ToList(),
-                Claims = claims,
-                Message = "User add to Role successfuly!"
+                IsSuccess=true,
+                Message = "Login user is success!",
+                UserName = user.UserName,
+                Matricule = user.Matricule,
+                Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
+                Roles = roles.ToList()
             };
         }
 
-        private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
+            private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
