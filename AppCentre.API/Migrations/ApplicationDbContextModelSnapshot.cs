@@ -53,9 +53,9 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7f37565c-b4c9-4aea-9b12-18b751865874",
-                            ApplicationsID = "1624ce4f-be04-4b12-8639-cb211b36f282",
-                            ConcurrencyStamp = "85bd5a54-e826-44b2-abbb-174fc4eb2f9b",
+                            Id = "b5293996-da24-47a9-bdf1-3c7a2c96afc9",
+                            ApplicationsID = "8a185cc7-7bb2-4b80-8549-402ea66c1139",
+                            ConcurrencyStamp = "ca1955ab-454b-495b-9e9f-c60a2b7e6401",
                             Name = "Developer",
                             NormalizedName = "Developer"
                         });
@@ -154,9 +154,9 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1d78d3cc-9171-4513-b639-f3ea026988f9",
+                            Id = "83a3b1a1-9252-434e-b685-8d7ccd49af59",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2d4e7384-8f78-41c6-b183-4be827408369",
+                            ConcurrencyStamp = "b3774035-2ef8-4b5e-9172-ab376accba1a",
                             Email = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
                             EmailConfirmed = true,
                             Grade = 15,
@@ -165,10 +165,10 @@ namespace AppCentre.API.Migrations
                             NN = 400123,
                             Nom = "Youcef",
                             NormalizedEmail = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
-                            PasswordHash = "31uVufYPiSu4aohjRaUSzI7WeY3PSwkPX3pzGg9Grrg=",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFrD4XmGRepWphfE3SfRIKMGJQI2PGSyI0IAbJ5d12GVffkmOExbTP/DVnwO8n/+tg==",
                             PhoneNumberConfirmed = false,
                             Prenom = "OULD DJABALLAH",
-                            SecurityStamp = "abbbfb76-7edd-4e25-bc47-d2d4c868b869",
+                            SecurityStamp = "91071e70-ef35-4b85-b30e-33ff49082f7f",
                             Service = "16H\\",
                             TwoFactorEnabled = false,
                             UserName = "Youcef_OULD_DJABALLAH"
@@ -201,7 +201,7 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            ApplicationsID = "1624ce4f-be04-4b12-8639-cb211b36f282",
+                            ApplicationsID = "8a185cc7-7bb2-4b80-8549-402ea66c1139",
                             ApplicationsName = "Applications Centre",
                             ShortName = "AppCentre"
                         });
@@ -294,8 +294,8 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "1d78d3cc-9171-4513-b639-f3ea026988f9",
-                            RoleId = "7f37565c-b4c9-4aea-9b12-18b751865874"
+                            UserId = "83a3b1a1-9252-434e-b685-8d7ccd49af59",
+                            RoleId = "b5293996-da24-47a9-bdf1-3c7a2c96afc9"
                         });
                 });
 

@@ -54,29 +54,12 @@ namespace AppCentre.API.Models
                     EmailConfirmed=true,
                     NormalizedEmail= "Youcef_OULD_DJABALLAH@AppCentre.DRH",
                     Id= userID,
-                    PasswordHash= getHashedPassword("Dgsn_2020")
+                    PasswordHash= "AQAAAAEAACcQAAAAEFrD4XmGRepWphfE3SfRIKMGJQI2PGSyI0IAbJ5d12GVffkmOExbTP/DVnwO8n/+tg==" // Password Dgsn_2020
                 });
 
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> {RoleId=roleId,UserId=userID}); 
         }
-        private string getHashedPassword(string password) 
-        {
-            byte[] salt = new byte[128 / 8];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(salt);
-            }
-
-            
-            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: password,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA1,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8));
-            
-            return hashed;
-        }
+       
         public DbSet<Applications> AspNetApplications { get; set; }
     }
 }

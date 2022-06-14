@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppCentre.API.Migrations
 {
-    public partial class First : Migration
+    public partial class One : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,8 @@ namespace AppCentre.API.Migrations
                 columns: table => new
                 {
                     ApplicationsID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ApplicationsName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShortName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ApplicationsName = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ShortName = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -181,22 +181,36 @@ namespace AppCentre.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetApplications",
                 columns: new[] { "ApplicationsID", "ApplicationsName", "ShortName" },
-                values: new object[] { "34863c7c-578a-43b4-a54d-8ab1b8c52e33", "Applications Centre", "AppCentre" });
+                values: new object[] { "8a185cc7-7bb2-4b80-8549-402ea66c1139", "Applications Centre", "AppCentre" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Grade", "LockoutEnabled", "LockoutEnd", "Matricule", "NN", "Nom", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Prenom", "SecurityStamp", "Service", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "cd9ec744-4db0-4df7-afe5-ba0c5861cd51", 0, "f898f542-5cc3-4a7e-b3d4-b5aad55c66a0", "Youcef_OULD_DJABALLAH@AppCentre.DRH", true, 15, false, null, "3K174", 400123, "Youcef", "Youcef_OULD_DJABALLAH@AppCentre.DRH", null, "R9CwnWEjrWLxEXfeJOEe2srXIOZj5vqTXK1gUEL++oI=", null, false, "OULD DJABALLAH", "14d6e672-8bda-4524-b83f-dccb7028cec5", "16H\\", false, "Youcef_OULD_DJABALLAH" });
+                values: new object[] { "83a3b1a1-9252-434e-b685-8d7ccd49af59", 0, "b3774035-2ef8-4b5e-9172-ab376accba1a", "Youcef_OULD_DJABALLAH@AppCentre.DRH", true, 15, false, null, "3K174", 400123, "Youcef", "Youcef_OULD_DJABALLAH@AppCentre.DRH", null, "AQAAAAEAACcQAAAAEFrD4XmGRepWphfE3SfRIKMGJQI2PGSyI0IAbJ5d12GVffkmOExbTP/DVnwO8n/+tg==", null, false, "OULD DJABALLAH", "91071e70-ef35-4b85-b30e-33ff49082f7f", "16H\\", false, "Youcef_OULD_DJABALLAH" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ApplicationsID", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "7504e4b1-0545-47e6-a43f-9a9415120630", "34863c7c-578a-43b4-a54d-8ab1b8c52e33", "0b56c731-6fd5-48b9-9e21-ef716ed1786a", "Developer", "Developer" });
+                values: new object[] { "b5293996-da24-47a9-bdf1-3c7a2c96afc9", "8a185cc7-7bb2-4b80-8549-402ea66c1139", "ca1955ab-454b-495b-9e9f-c60a2b7e6401", "Developer", "Developer" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "7504e4b1-0545-47e6-a43f-9a9415120630", "cd9ec744-4db0-4df7-afe5-ba0c5861cd51" });
+                values: new object[] { "b5293996-da24-47a9-bdf1-3c7a2c96afc9", "83a3b1a1-9252-434e-b685-8d7ccd49af59" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetApplications_ApplicationsName",
+                table: "AspNetApplications",
+                column: "ApplicationsName",
+                unique: true,
+                filter: "[ApplicationsName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetApplications_ShortName",
+                table: "AspNetApplications",
+                column: "ShortName",
+                unique: true,
+                filter: "[ShortName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

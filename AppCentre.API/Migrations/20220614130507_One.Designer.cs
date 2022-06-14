@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCentre.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220531184836_First")]
-    partial class First
+    [Migration("20220614130507_One")]
+    partial class One
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,9 +55,9 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7504e4b1-0545-47e6-a43f-9a9415120630",
-                            ApplicationsID = "34863c7c-578a-43b4-a54d-8ab1b8c52e33",
-                            ConcurrencyStamp = "0b56c731-6fd5-48b9-9e21-ef716ed1786a",
+                            Id = "b5293996-da24-47a9-bdf1-3c7a2c96afc9",
+                            ApplicationsID = "8a185cc7-7bb2-4b80-8549-402ea66c1139",
+                            ConcurrencyStamp = "ca1955ab-454b-495b-9e9f-c60a2b7e6401",
                             Name = "Developer",
                             NormalizedName = "Developer"
                         });
@@ -156,9 +156,9 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cd9ec744-4db0-4df7-afe5-ba0c5861cd51",
+                            Id = "83a3b1a1-9252-434e-b685-8d7ccd49af59",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f898f542-5cc3-4a7e-b3d4-b5aad55c66a0",
+                            ConcurrencyStamp = "b3774035-2ef8-4b5e-9172-ab376accba1a",
                             Email = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
                             EmailConfirmed = true,
                             Grade = 15,
@@ -167,10 +167,10 @@ namespace AppCentre.API.Migrations
                             NN = 400123,
                             Nom = "Youcef",
                             NormalizedEmail = "Youcef_OULD_DJABALLAH@AppCentre.DRH",
-                            PasswordHash = "R9CwnWEjrWLxEXfeJOEe2srXIOZj5vqTXK1gUEL++oI=",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFrD4XmGRepWphfE3SfRIKMGJQI2PGSyI0IAbJ5d12GVffkmOExbTP/DVnwO8n/+tg==",
                             PhoneNumberConfirmed = false,
                             Prenom = "OULD DJABALLAH",
-                            SecurityStamp = "14d6e672-8bda-4524-b83f-dccb7028cec5",
+                            SecurityStamp = "91071e70-ef35-4b85-b30e-33ff49082f7f",
                             Service = "16H\\",
                             TwoFactorEnabled = false,
                             UserName = "Youcef_OULD_DJABALLAH"
@@ -183,19 +183,27 @@ namespace AppCentre.API.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ApplicationsName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ShortName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ApplicationsID");
+
+                    b.HasIndex("ApplicationsName")
+                        .IsUnique()
+                        .HasFilter("[ApplicationsName] IS NOT NULL");
+
+                    b.HasIndex("ShortName")
+                        .IsUnique()
+                        .HasFilter("[ShortName] IS NOT NULL");
 
                     b.ToTable("AspNetApplications");
 
                     b.HasData(
                         new
                         {
-                            ApplicationsID = "34863c7c-578a-43b4-a54d-8ab1b8c52e33",
+                            ApplicationsID = "8a185cc7-7bb2-4b80-8549-402ea66c1139",
                             ApplicationsName = "Applications Centre",
                             ShortName = "AppCentre"
                         });
@@ -288,8 +296,8 @@ namespace AppCentre.API.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "cd9ec744-4db0-4df7-afe5-ba0c5861cd51",
-                            RoleId = "7504e4b1-0545-47e6-a43f-9a9415120630"
+                            UserId = "83a3b1a1-9252-434e-b685-8d7ccd49af59",
+                            RoleId = "b5293996-da24-47a9-bdf1-3c7a2c96afc9"
                         });
                 });
 

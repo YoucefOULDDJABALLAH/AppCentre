@@ -41,7 +41,7 @@ namespace AppCentre.API.Services
                 var errors = string.Empty;
                 foreach (var err in result.Errors)
                 {
-                    errors += $"{ err.Description}, ";
+                    errors += $"{err.Description}, ";
                 }
                 return new AuthenticatedModelDTO { Errors = errors, Message = "Registration failed !", IsSuccess = false };
             }
@@ -64,7 +64,7 @@ namespace AppCentre.API.Services
         {
             model.UserName += "@AppCentre.DRH";
             var user = await _userManager.FindByEmailAsync(model.UserName);
-            if (user is null || !await _userManager.CheckPasswordAsync(user,model.Password))
+            if (user is null || !await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 return new AuthenticatedModelDTO
                 {
@@ -76,7 +76,7 @@ namespace AppCentre.API.Services
             var roles = await _userManager.GetRolesAsync(user);
             return new AuthenticatedModelDTO
             {
-                IsSuccess=true,
+                IsSuccess = true,
                 Message = "Login user is success!",
                 UserName = user.UserName,
                 Matricule = user.Matricule,
@@ -85,8 +85,9 @@ namespace AppCentre.API.Services
             };
         }
 
-            private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
+        private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
         {
+
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
             var roleClaims = new List<Claim>();
@@ -118,3 +119,4 @@ namespace AppCentre.API.Services
         }
     }
 }
+

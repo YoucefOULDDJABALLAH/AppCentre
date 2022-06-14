@@ -10,7 +10,7 @@ namespace AppCentre.API.Helpers
         public MappingProfile()
         {
             CreateMap<RegisterationModelDTO, ApplicationUser>()
-                .ForMember(dest => dest.Email, src => src.MapFrom(src => $"{src.UserName}@AppCentre.com"))
+                .ForMember(dest => dest.Email, src => src.MapFrom(src => $"{src.UserName}@AppCentre.DRH"))
                 .ForMember(dest => dest.EmailConfirmed, src => src.MapFrom(src => true));
 
             CreateMap<ApplicationRole, CreatedRoleModelDTO>()
