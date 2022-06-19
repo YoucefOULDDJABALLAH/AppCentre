@@ -1,0 +1,34 @@
+﻿@inherits LayoutComponentBase
+
+
+<MudLayout>
+    <MudAppBar Elevation="1" Dense="true" Style="@($"color:{Colors.Grey.Lighten1}; background:{Colors.Grey.Darken3};")" Class="shadow">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+        <MudSpacer />
+        @*<MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/MudBlazor/MudBlazor" Target="_blank" />*@
+    </MudAppBar>
+    <MudDrawer @bind-Open="@open" ClipMode="DrawerClipMode.Always" Breakpoint="Breakpoint.Lg" PreserveOpenState="false" Elevation="1" Variant="@DrawerVariant.Mini" OpenMiniOnHover="true">
+       <NavMenu />
+    </MudDrawer>
+    <MudMainContent Class="pt-10 px-5" >
+        <MudContainer Class="mt-6">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+
+@code
+{
+    bool open = false;
+
+    void ToggleDrawer()
+    {
+        open = !open;
+    }
+}
+
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />

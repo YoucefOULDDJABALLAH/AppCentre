@@ -1,0 +1,21 @@
+﻿ 
+
+ 
+<MudNavMenu Color="Color.Dark" Class="@NavMenuCssClass" Bordered="true" Dense="false" Margin="Margin.Normal" Rounded="true">
+    
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Filled.Store" Href="" Class="pt-5">Home</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Filled.LibraryBooks" Href="counter">Counter</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All" Icon="@Icons.Filled.Group" Href="fetchdata">Fetch data</MudNavLink>
+</MudNavMenu>
+
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
