@@ -1,7 +1,32 @@
 ﻿@page "/"
-
+@layout AuthLayout
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+<AuthorizeView>
+    <Authorized>
+        <table border="1">
+            <thead>
+            <tr>
+                <th width="200">Type</th>
+                <th width="400">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in context.User.Claims)
+                {
+                    <tr>
+                        <td>@item.Type </td>
+                        <td>@item.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </Authorized>
+    <NotAuthorized>
+        Not Authorized !
+    </NotAuthorized>
+</AuthorizeView>

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCentre.API", "AppCentre.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCentre.WEB", "AppCentre.WEB\AppCentre.WEB.csproj", "{CE371FD8-41C1-4E7D-B714-A5F5E1EADF6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCentre.WEB.Library", "AppCentre.WEB.Library\AppCentre.WEB.Library.csproj", "{BC6F064C-9C2B-4172-AFF5-3404C9074695}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCentre.WEB.Library", "AppCentre.WEB.Library\AppCentre.WEB.Library.csproj", "{BC6F064C-9C2B-4172-AFF5-3404C9074695}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

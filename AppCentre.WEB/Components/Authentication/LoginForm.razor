@@ -1,0 +1,53 @@
+﻿@namespace AppCentre.WEB.Components
+@using System.ComponentModel.DataAnnotations
+
+
+
+<EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="12" sm="8" Class="mb-5">
+            <MudCard Class="text-center mt-5">
+                <MudCardHeader Style="@($"color:{Colors.Grey.Lighten1}; background:{Colors.Grey.Darken3};")">
+                    <MudSpacer />
+                    <MudText Typo="Typo.h6" Align="Align.Center"><b>Bienvenue sur <b style="font-weight:bolder;color:lightskyblue">APP</b> <b style="font-weight:bolder;color:white">CENTER</b></b></MudText>
+                    <MudSpacer />
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudTextField Label="Utilisateur" HelperText="Taper votre Nom Utilisateur ici"
+                                  @bind-Value="model.Username" For="@(() => model.Username)" />
+                    <MudTextField Label="Mots de passe" HelperText="Taper votre Mot de passe ici" Class="mt-3"
+                                  @bind-Value="model.Password" For="@(() => model.Password)" InputType="InputType.Password" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" StartIcon="@(_LogingIn?"":Icons.Filled.Login)" Variant="Variant.Filled" Color="Color.Dark" Class="ml-auto" Disabled="@_LogingIn">
+                        @if (_LogingIn)
+                        {
+                            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                            <MudText Class="ms-2">Connexion en cours</MudText>
+                        }
+                        else
+                        {
+                            <MudText>Login</MudText>
+                        }
+                    </MudButton> @*Style="@($"color:{Colors.Grey.Lighten1};background:{Colors.LightBlue.Darken4};")" *@
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="8">
+            <MudPaper Class="pa-4 mud-height-full" Elevation="0">
+                @if (success)
+                {
+                    <MudText Color="Color.Success">Success</MudText>
+                }
+                else
+                {
+                    <MudText Color="@Color.Error">
+                        <ValidationSummary />
+                    </MudText>
+                }
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
