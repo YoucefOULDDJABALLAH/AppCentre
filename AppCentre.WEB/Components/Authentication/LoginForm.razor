@@ -34,18 +34,22 @@
                 </MudCardActions>
             </MudCard>
         </MudItem>
+
         <MudItem xs="12" sm="8">
+            @if (ShowWarning)
+            {
+                <MudAlert Severity="Severity.Warning" Variant="Variant.Filled" ShowCloseIcon="true" CloseIconClicked="(() => CloseMe(true,1))">@_errorMessage</MudAlert>
+            }
+            @if (ShowSuccess)
+            {
+                @*<MudAlert Severity="Severity.Success" Variant="Variant.Filled" ShowCloseIcon="true" CloseIconClicked="(() => CloseMe(true,2))">Success</MudAlert>*@
+            }
             <MudPaper Class="pa-4 mud-height-full" Elevation="0">
-                @if (success)
-                {
-                    <MudText Color="Color.Success">Success</MudText>
-                }
-                else
-                {
-                    <MudText Color="@Color.Error">
-                        <ValidationSummary />
-                    </MudText>
-                }
+
+                <MudText Color="@Color.Error">
+                    <ValidationSummary />
+                </MudText>
+
             </MudPaper>
         </MudItem>
     </MudGrid>

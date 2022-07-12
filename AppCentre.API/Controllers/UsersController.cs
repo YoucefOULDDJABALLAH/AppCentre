@@ -44,7 +44,7 @@ namespace AppCentre.API.Controllers
             var result = await _authRepository.LoginUser(model);
             if (!result.IsSuccess)
             {
-                BadRequest(result.Errors);
+                return BadRequest(result);
             }
             return Ok(result);
         }
